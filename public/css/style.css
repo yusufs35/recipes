@@ -1,0 +1,32 @@
+:root{
+     --color1: #8DC63F;
+     --color2: #606060;
+     --color3: #333333;
+     --color4: #909090;
+}
+
+body{
+     font-size:1rem;
+     padding:0; margin:0;
+}
+
+a{
+     color:var(--color4);
+}
+
+a:hover{
+     color:var(--color1);
+}
+
+/*
+Stillerinizi yazarken karışıklık olmaması için her açtığınız
+stil etiketinin başına mutlaka çalıştığınız bölümünetiketini koymayı ihmal etmeyiniz.
+Ör:
+
+.header .logo{
+ back
+}
+
+
+
+*/
