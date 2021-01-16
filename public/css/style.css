@@ -1,3 +1,4 @@
+
 :root{
      --color1: #8DC63F;
      --color2: #606060;
@@ -18,15 +19,99 @@ a:hover{
      color:var(--color1);
 }
 
-/*
+
+
+/* me-auto mb-2 mb-lg-0
 Stillerinizi yazarken karışıklık olmaması için her açtığınız
 stil etiketinin başına mutlaka çalıştığınız bölümünetiketini koymayı ihmal etmeyiniz.
 Ör:
+*/
+ .header .navbar ul li a   {
+   margin-left: 50px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   padding-bottom: 20px;
+	color: #707070;
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 18px;
+	overflow: hidden;
+	border-bottom: 3px solid transparent;
+}
 
-.header .logo{
- back
+footer .arkaplan-siyah{
+  color: white;
+
+}
+
+.footer {
+    background-color: #333333;
+    color: #B8B8B8;
+    padding: 35px 0 40px 0;
+    margin: 0;
+
+}
+
+footer li a  {
+  color: #B8B8B8;
+  text-decoration: none;
+ margin-left: -13px;
+}
+
+footer p {
+  color: #B8B8B8;
+}
+
+footer ul {
+    list-style: none;
+}
+footer li {
+    position: relative;
+    line-height: 1.8rem;
+
+}
+footer li:before {
+    content: "\25b8";
+    position: absolute;
+    left: -2em;
+    color: white;
+  }
+  footer  button{
+    background-color: #8DC63F;
+      border: 1px solid #474747;
+    font-weight: 700px;
+    line-height: 18px;
+    padding: 12px;
+    height: 45px;
+    margin: 0 auto;
+}
+
+footer  input{
+  background-color: #3A3A3A;
+    border: 1px solid #474747;
+  font-weight: 600px;
+  line-height: 18px;
+  padding: 12px;
+  height: 45px;
+  margin: 0 auto;
+  color: #B8B8B8;
 }
 
 
+footer .copyright{
+  padding-left: 60px;
 
-*/
+}
+footer #footer-bottom{
+  background: #2A2A2A;
+    color: #B0B0B0;
+    padding: 18px 0;
+  position: absolute;
+  margin-bottom: 0;
+  margin-top: 35px;
+}
+footer p a{
+  color: white;
+  text-decoration: none;
+}
