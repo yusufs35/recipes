@@ -150,6 +150,40 @@ footer p a {
   background-color: #48a868;
 }
 
+
+section.altinci-bolum .seffaf{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  top: 0;
+  left:0;
+  background-color: rgba(0, 0, 0, 0.5);
+
+}
+
+section.altinci-bolum .row{
+  display: block;
+  position: relative;
+
+}
+section.altinci-bolum{
+  position: relative;
+  z-index:0;
+}
+
+section.altinci-bolum-iki{
+  position: relative;
+  z-index: 1;
+  margin-top: -5%;
+}
+
+section.altinci-bolum .bg-muted div{
+  border-right: 5px black solid;
+}
+
+
+
 @media (min-width:576px) {
   .dortuncu-bolum .card-img-top {
     height: 50vw;
