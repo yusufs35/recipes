@@ -1,6 +1,39 @@
-<!-- 2 -->
-<section class="slider">
+<%-include("header") %>
 
+
+<!-- 2 -->
+<section id="ikinci-kisim" class="slider">
+  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+
+    <div class="carousel-inner">
+      <%for(var i =0 ; i<slider.length; i++){
+        %>
+      <div class="carousel-item <%=(i==0 ? "active" : "" )%>">
+        <img src="img/slider/<%=slider[i].image %>" class="d-block w-100" alt="...">
+      </div>
+      <% } %>
+
+
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </a>
+
+  </div>
+  
+  <div class="carousel-indicators row">
+    <%for(var i =0 ; i<slider.length; i++){%>
+    <div class="col-md-3"><a data-bs-target="#carouselExampleIndicators" data-bs-slide-to="<%=i%>"
+        class="col-md-3 <%=(i==0 ? "active" : "" )%>"><%=slider[i].title %> </a></div>
+        <% } %>
+  </div>
+ 
+  ​
 </section>
 <!-- 2 -->
 
@@ -8,17 +41,59 @@
 
 <section class="content container">
   <div class="row">
-    <!-- 4 -->
-    <div class="col-md-10 recipes">
-      <!-- BURAYA TARİF IZGARASI GELECEK -->
+    <div class="col-md-9  dortuncu-bolum">
+      <div class="row">
+    <%for(var i =0 ; i<recipes.length; i++){%>
+   
+        <div class="col-md-4 col-sm-6 col-12 recipes">
+          <div class="card">
+            <img src="img/recipe/<%= recipes[i].image %>" class="card-img-top img-fluid " alt="<%= recipes[i].title %> Nasıl Yapılır ?" >
+            <div class="card-body">
+              <h4 class="card-text text-muted"><%= recipes[i].title%></h4>
+              <hr>
+              <%
+              var totalScore = 5;
+              var score = 0;
+              if(recipes[i].rating){
+                  score = recipes[i].rating;
+              }  
+                for (var j=0 ;j<score; j++) {%>
+                <i class="fas fa-star text-warning"></i>
+                <% } 
+                for (var j=0 ;j < (totalScore - score) ; j++) {%>
+                  <i class="fas fa-star text-secondary"></i>
+                <% }
+              
+            
+              
+
+              %>
+              
+              <div class="d-flex justify-content-end">
+                <i class="far fa-clock pt-1 text-muted"></i> &nbsp; 
+                <h5 class="text-muted font-weight-bold"><%= recipes[i].prep_time%> dk </h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% } %>
+
+      </div>
+      
+      
+
+
     </div>
-    <!-- 4 -->
 
 
     <!-- 3 -->
-    <div class="col-md-2 sidebar">
-      <!-- BURAYA SIDEBAR GELECEK -->
+   
+    <div class="col-md-3 sidebar">
+      <%-include("sidebar") %>
+      
     </div>
     <!-- 3 -->
   </div>
 </section>
+
+<%-include("footer") %>
