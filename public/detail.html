@@ -200,14 +200,98 @@
                <!-- 8 -->
 
                <!-- 9 -->
-               <div class="reviews">
-               <!-- buraya tarifin resmi altına kısa açıklama gelecek -->
+               <div class="reviews mt-5">
+                    <div class="line row ">
+                         <div class="d-flex align-items-center ">
+                              <h3 class="text-muted text-nowrap"> Yorumlar (4) </h3>
+                              <div class="cizgi text-muted d-flex justify-content-between">
+                              </div>
+                         </div>
+                    </div>
+               
+                    <!-- Reviews -->
+                    <section class="comments" id="reviews">
+                         <div class="row">
+                              <div class="col-2"><img src="http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&s=70" alt=""></div>
+                              <div class="col-10">
+                                   <div class="comment-by"><strong>Kathy Brown</strong><span class="date">12th, October 2014</span></div>
+                                   <p>Morbi velit eros, sagittis in facilisis non, rhoncus et erat. Nam posuere tristique sem, eu ultricies tortor imperdiet vitae. Curabitur lacinia neque non metus</p>
+                                   <div class="rating">
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                   </div>
+                              </div>
+                         </div>
+
+                         <div class="row mt-5">
+                              <div class="col-2"><img src="http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&s=70" alt=""></div>
+                              <div class="col-10">
+                                   <div class="comment-by"><strong>Kathy Brown</strong><span class="date">12th, October 2014</span></div>
+                                   <p>Morbi velit eros, sagittis in facilisis non, rhoncus et erat. Nam posuere tristique sem, eu ultricies tortor imperdiet vitae. Curabitur lacinia neque non metus</p>
+                                   <div class="rating">
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                   </div>
+                              </div>
+                         </div>
+                         
+                    </section>
+    
                </div>
                <!-- 9 -->
 
                <!-- 10 -->
-               <div class="add-review">
-               <!-- buraya tarifin resmi altına kısa açıklama gelecek -->
+               <div class="add-review mt-5">
+                    <div class="line row ">
+                         <div class="d-flex align-items-center ">
+                              <h3 class="text-muted text-nowrap"> Yorum Ekle</h3>
+                              <div class="cizgi text-muted d-flex justify-content-between">
+                              </div>
+                         </div>
+                    </div>
+		
+                    <!-- Add Comment Form -->
+                    <form id="add-review" class="needs-validaiton" novalidate>
+                         <input type="hidden" id="hdnRate" name="rate" value="">
+                         <fieldset>
+                              <div class="mb-3">
+                                   <label for="name" class="form-label">Ad Soyad*</label>
+                                   <input type="text" class="form-control" id="name" name="name" required>
+                              </div>
+                                   
+                              <div class="mb-3">
+                                   <label for="email" class="form-label">Eposta*</label>
+                                   <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
+                              </div>
+          
+                              <div class="mb-3">
+                                   <label>Puan:</label>
+                                   <span id="set-rate">
+                                        <i class="fas fa-star text-secondary" data-rate="1"></i>
+                                        <i class="fas fa-star text-secondary" data-rate="2"></i>
+                                        <i class="fas fa-star text-secondary" data-rate="3"></i>
+                                        <i class="fas fa-star text-secondary" data-rate="4"></i>
+                                        <i class="fas fa-star text-secondary" data-rate="5"></i>
+                                   </span>
+                              </div>
+
+                         
+                                       
+                              <div class="mb-3">
+                                   <label for="comment" class="form-label">Yorum*</label>
+                                   <textarea class="form-control" rows="3" required id="comment" name="comment"></textarea>
+                              </div>
+          
+                         </fieldset>
+          
+                         <button type="submit" class="btn btn-large- btn-success">Yorum Gönder</a>         
+                    </form>
                </div>
                <!-- 10-->
           </div>
