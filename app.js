@@ -12,7 +12,7 @@ var connection = mysql.createConnection({
     multipleStatements: true,
     host: 'localhost',
     user: 'root',
-    password: 'Ax17*.c*',
+    password: '12344321',
     database: 'recipes'
 });
 
@@ -22,14 +22,36 @@ connection.connect(function (err) {
 }); -
 
 app.get("/", function (req, res) {
-    var sql = "SELECT * FROM banners WHERE visible=1 ORDER BY seq;" + 
+    var sql = "SELECT * FROM banners WHERE visible=1 ORDER BY seq;" +
     " SELECT recipes.*, ( SELECT ROUND(AVG(rating)) FROM comments GROUP BY recipe HAVING recipe = recipes.recipe_id ) rating  FROM recipes     WHERE recipes.visible=1 ORDER BY recipes.create_date DESC limit 10";
     connection.query(sql, function (err, results, fields) {
-        
+
         if (err) throw err;
         res.render("index", {
             slider: results[0],
             recipes:results[1]
+        })
+
+    });
+
+});
+app.get("/tarifler/:tarif", function (req, res) {
+  var tarif = req.params.tarif;
+    var sql = "SELECT * FROM recipes WHERE recipe_id="+tarif+";"+
+    "SELECT * FROM ingredients WHERE recipe="+tarif+ ";"+
+    "SELECT * FROM directions WHERE recipe="+tarif+ ";" +
+    "SELECT * FROM comments WHERE recipe="+tarif + ";"+
+    " SELECT ROUND(AVG(rating)) FROM comments GROUP BY recipe HAVING recipe="+tarif+ ";";
+    connection.query(sql, function (err, results, fields) {
+
+        if (err) throw err;
+        res.render("tarif", {
+            recipe: results[0],
+            ingredients:results[1],
+            directions:results[2],
+            comments:results[3],
+            rating : results[4]
+
         })
 
     });
