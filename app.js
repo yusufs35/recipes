@@ -12,7 +12,7 @@ var connection = mysql.createConnection({
     multipleStatements: true,
     host: 'localhost',
     user: 'root',
-    password: '12344321',
+    password: 'Ax17*.c*',
     database: 'recipes'
 });
 
