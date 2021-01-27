@@ -1,0 +1,386 @@
+<%-include("header") %>
+
+<!-- 6.1 -->
+<section class="altinci-bolum banner ">
+<div class="row">
+     <div class="seffaf">
+
+     </div>
+     <img src="/img/recipe-detail-bg.jpg" alt="">
+</div>
+
+</section>
+<!-- 6.1 -->
+
+<section class="altinci-bolum-iki content container">
+  <div class="row">
+        <div class="col-md-9 recipes">
+
+             <!-- 6.2 -->
+             <div class="recipe-detail">
+                  <div class="card">
+                  <div class="card-body">
+                  <h5 class="card-title fs-1"><%= recipe[0].title %> </h5>
+
+                  <p class="card-text text-muted"><small class="text-muted">
+                    <%
+                    var totalScore = 5;
+                    var score = 0;
+                    if(recipe[0].rating){
+                        score = recipe[0].rating;
+                    }
+                      for (var j=0 ;j<score; j++) {%>
+                      <i class="fas fa-star text-warning"></i>
+                      <% }
+                      for (var j=0 ;j < (totalScore - score) ; j++) {%>
+                        <i class="fas fa-star text-secondary"></i>
+                      <% }
+
+
+                    %>(<%= comments.length %> yorum)</small></p>
+                  </div>
+                  <img src="/img/slider/slider3.jpg" class="card-img-bottom" alt="...">
+                  <small class="bg-muted mt-3 shadow-sm">
+                  <div class="row">
+                       <div class="col-lg-3 col-md-6 col-sm-6 text-center">
+                       <span class="text-muted"><i class=""></i>Kac Kisilik: <br> <%= recipe[0].serves  %> kisi </span>
+                       </div>
+                       <div class="col-lg-3 col-md-6 col-sm-6 text-center">
+                       <span class="text-muted"><i class=""></i> Hazirlama Suresi: <br> <%= recipe[0].prep_time %> dakika</span>
+                       </div>
+                       <div class="col-lg-3 col-md-6 col-sm-6 text-center">
+                       <span class="text-muted"><i class=""></i> Kalori: <br> <%= recipe[0].calories  %> kalori</span>
+                       </div>
+                       <div class="col-lg-3 col-md-6 col-sm-6 text-center">
+                       <button type="button" class="btn btn-success fw-bold"><i class="fas fa-print"></i> Yazdir</button>
+                       </div>
+                  </div>
+                  </small>
+                  </div>
+                  <p class="mt-3"><%= recipe[0].description  %></p>
+             </div>
+             <!-- 6.2 -->
+
+             <!-- 7 -->
+             <div class="recipe-directions">
+                  <div class="row">
+                       <div class="container px-4">
+                            <div class="row gx-5">
+                                 <div class="col">
+                                      <div class="p-3 border bg-light">
+                                           <h5>Malzemeler</h5>
+                                      <%     for(i=0 ; i<ingredients.length ; i++ )  {  %>
+                                      <div class="form-check">
+                                           <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                           <label class="form-check-label" for="flexCheckDefault">
+                                                <%=  ingredients[i].ingredient       %>
+                                           </label>
+                                      </div>
+                                      <% } %>
+
+                                      </div>
+                                 </div>
+                                 <div class="col">
+                                      <div class="p-3 border list-group-item list-group-item-action">
+
+                                           <div class="d-flex w-100 justify-content-between">
+                                                <h5 class="mb-1"> Hazirlanisi</h5>
+                                           </div>
+                                           <%  for(i=0; i<directions.length ; i++){ %>
+                                             <p class="mb-1"> <%= directions[i].direction  %></p>
+                                          <% } %>
+
+                                      </div>
+                                 </div>
+                            </div>
+                       </div>
+                  </div>
+             </div>
+             <!-- 7 -->
+
+             <!-- 8 -->
+             <div class="alternative-recipes">
+                  <div class="line row ">
+                       <div class="d-flex align-items-center ">
+                            <h3 class="text-muted text-nowrap"> You may also like</h3>
+                            <div class="cizgi text-muted d-flex justify-content-center">
+                            </div>
+                       </div>
+                  </div>
+                  <div class="row">
+                       <div class="col-4">
+                            <div class="cards">
+                                 <img src="/img/recipe/recipeThumb-01.jpg" class="card-img-top" alt="...">
+                                 <div class="card-body">
+                                      <h4 class="card-text text-muted">Mexican <br> Grilled Corn <br> Reciepe</h4>
+                                      <hr>
+                                      <i class="fas fa-star text-warning"></i>
+                                      <i class="fas fa-star text-warning"></i>
+                                      <i class="fas fa-star text-warning"></i>
+                                      <i class="fas fa-star text-warning"></i>
+                                      <i class="fas fa-star text-warning"></i>
+                                      <div class="d-flex justify-content-end">
+                                           <i class="far fa-clock pt-1 text-muted"></i>
+                                           <h5 class="text-muted font-weight-bold">30 MIN</h5>
+                                      </div>
+                                 </div>
+                            </div>
+                       </div>
+                       <div class="col-4">
+                            <div class="cards">
+                                 <img src="/img/recipe/recipeThumb-07.jpg" class="card-img-top" alt="...">
+                                 <div class="card-body">
+                                      <h4 class="card-text text-muted ">Roast Chicken With Lemon Gravy</h4>
+                                      <hr>
+                                      <i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning "></i>
+                                      <div class="d-flex justify-content-end">
+                                           <i class="far fa-clock pt-1 text-muted"></i>
+                                           <h5 class="text-muted font-weight-bold">1 HR 20 MIN</h5>
+                                      </div>
+                                 </div>
+                            </div>
+                       </div>
+                       <div class="col-4">
+                            <div class="cards">
+                                 <img src="/img/recipe/recipeThumb-03.jpg" class="card-img-top" alt="...">
+                                 <div class="card-body">
+                                      <h4 class="card-text text-muted">Thai Yellow <br> Curry Chicken</h4>
+                                      <hr>
+                                      <i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i>
+                                      <div class="d-flex justify-content-end">
+                                           <i class="far fa-clock pt-1 text-muted"></i>
+                                           <h5 class="text-muted font-weight-bold">45 MIN</h5>
+                                      </div>
+                                 </div>
+                            </div>
+                       </div>
+                  </div>
+             </div>
+             <!-- 8 -->
+
+             <!-- 9 -->
+             <div class="reviews mt-5">
+                  <div class="line row ">
+                       <div class="d-flex align-items-center ">
+                            <h3 class="text-muted text-nowrap"> Yorumlar (4) </h3>
+                            <div class="cizgi text-muted d-flex justify-content-between">
+                            </div>
+                       </div>
+                  </div>
+
+                  <!-- Reviews -->
+                  <section class="comments" id="reviews">
+                       <div class="row">
+                            <div class="col-2"><img src="http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&s=70" alt=""></div>
+                            <div class="col-10">
+                                 <div class="comment-by"><strong>Kathy Brown</strong><span class="date">12th, October 2014</span></div>
+                                 <p>Morbi velit eros, sagittis in facilisis non, rhoncus et erat. Nam posuere tristique sem, eu ultricies tortor imperdiet vitae. Curabitur lacinia neque non metus</p>
+                                 <div class="rating">
+                                      <i class="fas fa-star text-warning"></i>
+                                      <i class="fas fa-star text-warning"></i>
+                                      <i class="fas fa-star text-warning"></i>
+                                      <i class="fas fa-star text-warning"></i>
+                                      <i class="fas fa-star text-warning"></i>
+                                 </div>
+                            </div>
+                       </div>
+
+                       <div class="row mt-5">
+                            <div class="col-2"><img src="http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&s=70" alt=""></div>
+                            <div class="col-10">
+                                 <div class="comment-by"><strong>Kathy Brown</strong><span class="date">12th, October 2014</span></div>
+                                 <p>Morbi velit eros, sagittis in facilisis non, rhoncus et erat. Nam posuere tristique sem, eu ultricies tortor imperdiet vitae. Curabitur lacinia neque non metus</p>
+                                 <div class="rating">
+                                      <i class="fas fa-star text-warning"></i>
+                                      <i class="fas fa-star text-warning"></i>
+                                      <i class="fas fa-star text-warning"></i>
+                                      <i class="fas fa-star text-warning"></i>
+                                      <i class="fas fa-star text-warning"></i>
+                                 </div>
+                            </div>
+                       </div>
+
+                  </section>
+
+             </div>
+             <!-- 9 -->
+
+             <!-- 10 -->
+             <div class="add-review mt-5">
+                  <div class="line row ">
+                       <div class="d-flex align-items-center ">
+                            <h3 class="text-muted text-nowrap"> Yorum Ekle</h3>
+                            <div class="cizgi text-muted d-flex justify-content-between">
+                            </div>
+                       </div>
+                  </div>
+
+                  <!-- Add Comment Form -->
+                  <form id="add-review" class="needs-validaiton" novalidate>
+                       <input type="hidden" id="hdnRate" name="rate" value="">
+                       <fieldset>
+                            <div class="mb-3">
+                                 <label for="name" class="form-label">Ad Soyad*</label>
+                                 <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+
+                            <div class="mb-3">
+                                 <label for="email" class="form-label">Eposta*</label>
+                                 <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
+                            </div>
+
+                            <div class="mb-3">
+                                 <label>Puan:</label>
+                                 <span id="set-rate">
+                                      <i class="fas fa-star text-secondary" data-rate="1"></i>
+                                      <i class="fas fa-star text-secondary" data-rate="2"></i>
+                                      <i class="fas fa-star text-secondary" data-rate="3"></i>
+                                      <i class="fas fa-star text-secondary" data-rate="4"></i>
+                                      <i class="fas fa-star text-secondary" data-rate="5"></i>
+                                 </span>
+                            </div>
+
+
+
+                            <div class="mb-3">
+                                 <label for="comment" class="form-label">Yorum*</label>
+                                 <textarea class="form-control" rows="3" required id="comment" name="comment"></textarea>
+                            </div>
+
+                       </fieldset>
+
+                       <button type="submit" class="btn btn-large- btn-success">Yorum Gönder</a>
+                  </form>
+             </div>
+             <!-- 10-->
+        </div>
+
+
+        <div class="col-md-3  sidebar" style="margin-top: 6rem;">
+             <!-- BURAYA SIDEBAR GELECEK -->
+               <div id="ucuncu-kisim">
+                    <div class=" mb-2 searchButton">
+                         <div class="input-group mb-3">
+                              <input type="text" class="form-control" placeholder="Yemek tarifi ara" aria-describedby="button-addon2">
+                              <button class="btn" type="button" id="button-addon2"><i class="fas fa-search"></i></button>
+                         </div>
+                    </div>
+
+                    <div class="card mt-5">
+                         <div class="card-body">
+                              <div class="row">
+                                   <div class="col-6">
+                                        <h5><p class=" author-renk author-line"><b>Author</b></p></h5>
+                                        <h5 class="author-line text-muted"><p><b>Sandra</b></p></h5>
+                                        <h5 class="author-line text-muted"><p><b>Fortin</b></p></h5>
+                                   </div>
+                                   <div class="col-6">
+                                        <div><img src="img\author-photo.png" class="img-fluid" alt="..."></div>
+                                   </div>
+                              </div>
+                              <div class="row">
+                                   <div class="col-12">
+                                        <h5 class="card-title"><a href="#" class="">sandra@chow.com</a></h5>
+                                        <p class="card-text">I'm Sandra and this is where I share my stuff, I am madly in love with food. You wil find a balanceof healthy recipes, comfort food and indulgent desserts.</p>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+
+                    <div class="populer-recipes mt-5">
+                         <h4><p class="text-muted"><b>Popular Recipes</b></p></h4>
+                         <div class="foto-ustu">
+                              <img src="/img/recipe/recipeThumb-01.jpg" alt="">
+
+                              <div class="yazi">
+                                   <div>
+                                   <b>Chocolate Cake-With <br>Green Tea Cream</b> <br>
+                                   <i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning "></i>
+                                   </div>
+                              </div>
+
+                         </div>
+
+                         <div class="foto-ustu">
+                              <img src="/img/recipe/recipeThumb-02.jpg" alt="">
+
+                              <div class="yazi">
+                                   <div>
+                                   <b>Chocolate Cake-With <br>Green Tea Cream</b> <br>
+                                   <i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning "></i>
+                                   </div>
+                              </div>
+
+                         </div>
+
+                         <div class="foto-ustu">
+                              <img src="/img/recipe/recipeThumb-03.jpg" alt="">
+
+                              <div class="yazi">
+                                   <div>
+                                   <b>Chocolate Cake-With <br>Green Tea Cream</b> <br>
+                                   <i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning "></i>
+                                   </div>
+                              </div>
+
+                         </div>
+                    </div>
+
+
+                    <div class="share mt-5">
+                         <h4><p class="text-muted"><b>Share</b></p></h4>
+
+                         <div class="row">
+                              <div class="col-sm-6 mt-2">
+                                   <div class="sosyal-medya-icon icon1">
+                                        <a href="facebook.com">
+                                        <span>
+                                             <i class="fab fa-facebook-f"></i>
+                                             <div>1.234</div>
+                                             <div>Fans</div>
+                                        </span>
+                                        </a>
+                                   </div>
+                              </div>
+
+                              <div class="col-sm-6 mt-2">
+                                   <div class="sosyal-medya-icon icon2">
+                                        <a href="facebook.com">
+                                        <span>
+                                             <i class="fab fa-twitter"></i>
+                                             <div>1.234</div>
+                                             <div>Fans</div>
+                                        </span>
+                                        </a>
+                                   </div>
+                              </div>
+
+                              <div class="col-sm-6 mt-2">
+                                   <div class="sosyal-medya-icon icon3">
+                                        <a href="facebook.com">
+                                        <span>
+                                             <i class="fab fa-google"></i>
+                                             <div>1.234</div>
+                                             <div>Fans</div>
+                                        </span>
+                                        </a>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+
+
+             </div>
+           </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+<%-include("footer") %>
