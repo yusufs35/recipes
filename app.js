@@ -47,7 +47,8 @@ app.get("/tarifler/:tarif", function (req, res) {
     "SELECT * FROM comments WHERE recipe="+tarif + ";"+
     "SELECT ROUND(AVG(rating)) FROM comments GROUP BY recipe HAVING recipe="+tarif+ ";"+
     "SELECT * FROM recipes  WHERE visible=1 ORDER BY read_score DESC LIMIT 3;"+
-    "SELECT * FROM categories ORDER BY title;";
+    "SELECT * FROM categories ORDER BY title;"+
+    "SELECT * FROM recipes ORDER BY RAND() LIMIT 3;";
 
     connection.query(sql, function (err, results, fields) {
 
@@ -59,7 +60,8 @@ app.get("/tarifler/:tarif", function (req, res) {
             comments:results[3],
             rating : results[4],
             popular: results[5],
-            categories: results[6]
+            categories: results[6],
+            randomRecipes: results[7]
         })
 
     });

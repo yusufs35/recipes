@@ -90,58 +90,19 @@
              <div class="alternative-recipes">
                   <div class="line row ">
                        <div class="d-flex align-items-center ">
-                            <h3 class="text-muted text-nowrap"> You may also like</h3>
+                            <h3 class="text-muted text-nowrap">Bunları da deneyebilirsiniz</h3>
                             <div class="cizgi text-muted d-flex justify-content-center">
                             </div>
                        </div>
                   </div>
                   <div class="row">
-                       <div class="col-4">
-                            <div class="cards">
-                                 <img src="/img/recipe/recipeThumb-01.jpg" class="card-img-top" alt="...">
-                                 <div class="card-body">
-                                      <h4 class="card-text text-muted">Mexican <br> Grilled Corn <br> Reciepe</h4>
-                                      <hr>
-                                      <i class="fas fa-star text-warning"></i>
-                                      <i class="fas fa-star text-warning"></i>
-                                      <i class="fas fa-star text-warning"></i>
-                                      <i class="fas fa-star text-warning"></i>
-                                      <i class="fas fa-star text-warning"></i>
-                                      <div class="d-flex justify-content-end">
-                                           <i class="far fa-clock pt-1 text-muted"></i>
-                                           <h5 class="text-muted font-weight-bold">30 MIN</h5>
-                                      </div>
-                                 </div>
-                            </div>
-                       </div>
-                       <div class="col-4">
-                            <div class="cards">
-                                 <img src="/img/recipe/recipeThumb-07.jpg" class="card-img-top" alt="...">
-                                 <div class="card-body">
-                                      <h4 class="card-text text-muted ">Roast Chicken With Lemon Gravy</h4>
-                                      <hr>
-                                      <i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning "></i>
-                                      <div class="d-flex justify-content-end">
-                                           <i class="far fa-clock pt-1 text-muted"></i>
-                                           <h5 class="text-muted font-weight-bold">1 HR 20 MIN</h5>
-                                      </div>
-                                 </div>
-                            </div>
-                       </div>
-                       <div class="col-4">
-                            <div class="cards">
-                                 <img src="/img/recipe/recipeThumb-03.jpg" class="card-img-top" alt="...">
-                                 <div class="card-body">
-                                      <h4 class="card-text text-muted">Thai Yellow <br> Curry Chicken</h4>
-                                      <hr>
-                                      <i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i>
-                                      <div class="d-flex justify-content-end">
-                                           <i class="far fa-clock pt-1 text-muted"></i>
-                                           <h5 class="text-muted font-weight-bold">45 MIN</h5>
-                                      </div>
-                                 </div>
-                            </div>
-                       </div>
+                       <%randomRecipes.forEach( (tarif) => {%>
+                         <div class="col-4">
+                              <%-include ('partial-views/recipe', {recipe: tarif}) %>
+                         </div>
+                       <%})%>
+                       
+                       
                   </div>
              </div>
              <!-- 8 -->
@@ -150,43 +111,34 @@
              <div class="reviews mt-5">
                   <div class="line row ">
                        <div class="d-flex align-items-center ">
-                            <h3 class="text-muted text-nowrap"> Yorumlar (4) </h3>
+                            <h3 class="text-muted text-nowrap"> Yorumlar (<%=comments.length%>) </h3>
                             <div class="cizgi text-muted d-flex justify-content-between">
                             </div>
                        </div>
-                  </div>
+                  </div> 
+                  
 
                   <!-- Reviews -->
                   <section class="comments" id="reviews">
-                       <div class="row">
-                            <div class="col-2"><img src="http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&s=70" alt=""></div>
-                            <div class="col-10">
-                                 <div class="comment-by"><strong>Kathy Brown</strong><span class="date">12th, October 2014</span></div>
-                                 <p>Morbi velit eros, sagittis in facilisis non, rhoncus et erat. Nam posuere tristique sem, eu ultricies tortor imperdiet vitae. Curabitur lacinia neque non metus</p>
-                                 <div class="rating">
-                                      <i class="fas fa-star text-warning"></i>
-                                      <i class="fas fa-star text-warning"></i>
-                                      <i class="fas fa-star text-warning"></i>
-                                      <i class="fas fa-star text-warning"></i>
-                                      <i class="fas fa-star text-warning"></i>
-                                 </div>
-                            </div>
-                       </div>
-
+                       <% 
+                       comments.forEach( (yorum) => { 
+                         var d = new Date(yorum.create_date);
+                         var datestring = d.getDate()  + "-" + (d.getMonth()+1) + "-" + d.getFullYear();
+                            
+                         %>
                        <div class="row mt-5">
                             <div class="col-2"><img src="http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&s=70" alt=""></div>
                             <div class="col-10">
-                                 <div class="comment-by"><strong>Kathy Brown</strong><span class="date">12th, October 2014</span></div>
-                                 <p>Morbi velit eros, sagittis in facilisis non, rhoncus et erat. Nam posuere tristique sem, eu ultricies tortor imperdiet vitae. Curabitur lacinia neque non metus</p>
+                                 <div class="comment-by"><strong><%=yorum.name%></strong><span class="date"> <%=datestring%></span></div>
+                                 <p><%=yorum.comment%></p>
                                  <div class="rating">
-                                      <i class="fas fa-star text-warning"></i>
-                                      <i class="fas fa-star text-warning"></i>
-                                      <i class="fas fa-star text-warning"></i>
-                                      <i class="fas fa-star text-warning"></i>
-                                      <i class="fas fa-star text-warning"></i>
+                                      <%-include ('partial-views/stars', {rating: yorum.rating}) %>
                                  </div>
                             </div>
                        </div>
+                       <% }); %>
+
+                       
 
                   </section>
 
@@ -210,11 +162,13 @@
                             <div class="mb-3">
                                  <label for="name" class="form-label">Ad Soyad*</label>
                                  <input type="text" class="form-control" id="name" name="name" required>
+                                 <div class="invalid-feedback">Ad soyad giriniz</div>
                             </div>
 
                             <div class="mb-3">
                                  <label for="email" class="form-label">Eposta*</label>
                                  <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
+                                 <div class="invalid-feedback">Eposta adresinizi giriniz</div>
                             </div>
 
                             <div class="mb-3">
@@ -233,6 +187,7 @@
                             <div class="mb-3">
                                  <label for="comment" class="form-label">Yorum*</label>
                                  <textarea class="form-control" rows="3" required id="comment" name="comment"></textarea>
+                                 <div class="invalid-feedback">Yorumunuzu yazınız</div>
                             </div>
 
                        </fieldset>
