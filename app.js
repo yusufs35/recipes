@@ -12,7 +12,7 @@ var connection = mysql.createConnection({
     multipleStatements: true,
     host: 'localhost',
     user: 'root',
-    password: '12344321',
+    password: 'Ax17*.c*',
     database: 'recipes'
 });
 
@@ -23,15 +23,17 @@ connection.connect(function (err) {
 
 app.get("/", function (req, res) {
     var sql = "SELECT * FROM banners WHERE visible=1 ORDER BY seq;" +
-    " SELECT recipes.*, ( SELECT ROUND(AVG(rating)) FROM comments GROUP BY recipe HAVING recipe = recipes.recipe_id ) rating  FROM recipes     WHERE recipes.visible=1 ORDER BY recipes.create_date DESC limit 10;"+
-    "SELECT * FROM recipes  WHERE visible=1 ORDER BY read_score DESC LIMIT 3;";
+    " SELECT recipes.*, ( SELECT ROUND(AVG(rating)) FROM comments GROUP BY recipe HAVING recipe = recipes.recipe_id ) rating  FROM recipes     WHERE recipes.visible=1 ORDER BY recipes.create_date DESC limit 9;"+
+    "SELECT * FROM recipes  WHERE visible=1 ORDER BY read_score DESC LIMIT 3;"+
+    "SELECT * FROM categories ORDER BY title;";
     connection.query(sql, function (err, results, fields) {
 
         if (err) throw err;
         res.render("index", {
             slider: results[0],
             recipes:results[1],
-            popular: results[2]
+            popular: results[2],
+            categories: results[3]
         })
 
     });
@@ -43,21 +45,36 @@ app.get("/tarifler/:tarif", function (req, res) {
     "SELECT * FROM ingredients WHERE recipe="+tarif+ ";"+
     "SELECT * FROM directions WHERE recipe="+tarif+ ";" +
     "SELECT * FROM comments WHERE recipe="+tarif + ";"+
-    " SELECT ROUND(AVG(rating)) FROM comments GROUP BY recipe HAVING recipe="+tarif+ ";"+
-      "SELECT * FROM recipes  WHERE visible=1 ORDER BY read_score DESC LIMIT 3;";
-
+    "SELECT ROUND(AVG(rating)) FROM comments GROUP BY recipe HAVING recipe="+tarif+ ";"+
+    "SELECT * FROM recipes  WHERE visible=1 ORDER BY read_score DESC LIMIT 3;"+
+    "SELECT * FROM categories ORDER BY title;";
 
     connection.query(sql, function (err, results, fields) {
 
         if (err) throw err;
-        res.render("tarif", {
+        res.render("recipe-detail", {
             recipe: results[0],
             ingredients:results[1],
             directions:results[2],
             comments:results[3],
             rating : results[4],
-            popular: results[5]
+            popular: results[5],
+            categories: results[6]
+        })
 
+    });
+
+});
+
+
+app.get("/search/:cat/:text", function(req, res){
+     var sql = "SELECT * FROM categories ORDER BY title;";
+
+    connection.query(sql, function (err, results, fields) {
+
+        if (err) throw err;
+        res.render("search", {
+            categories: results
         })
 
     });

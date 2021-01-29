@@ -277,6 +277,7 @@
         background-color: rgba(0, 0, 0, 0.5);
         z-index: 2;
         content:'';
+        pointer-events: none;
    }
    
    #ucuncu-kisim .foto-ustu .yazi{
@@ -284,10 +285,12 @@
         top:0; left:0;
         padding:1rem;
         color:#ffffff;
-        z-index:3;
+        z-index:33;
    }
    
    #ucuncu-kisim .foto-ustu img{
+        position:relative;
+        z-index:1;
         height:7rem;
         width:100%;
         object-fit: cover;
@@ -333,8 +336,6 @@
         font-weight:400;
    }
    
-   
-   
    section.content{
         margin-bottom: 5rem;
    }
@@ -343,3 +344,15 @@
    .add-review form .fa-star{
         cursor:pointer;
    }
+
+.recipe-directions input[type=checkbox]:checked + label { text-decoration: line-through; }
+
+section.search{
+     background-color:#ececec;
+     padding:3rem;
+     margin-bottom:3rem;
+}
+
+section.search-results{
+     margin-bottom:3rem;
+}

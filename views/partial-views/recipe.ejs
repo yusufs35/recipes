@@ -1,0 +1,14 @@
+<div class="card">
+     <a href="/tarifler/<%= recipe.recipe_id %>"><img src="/img/recipe/<%= recipe.image %>" class="card-img-top img-fluid " alt="<%= recipe.title %> Nasıl Yapılır ?" ></a>
+     <div class="card-body">
+       <h4 class="card-text text-muted"><%= recipe.title%></h4>
+       <hr>
+       <%-include("partial-views/stars",{rating:recipe.rating })%>
+       
+
+       <div class="d-flex justify-content-end">
+         <i class="far fa-clock pt-1 text-muted"></i> &nbsp;
+         <h5 class="text-muted font-weight-bold"><%= recipe.prep_time%> dk </h5>
+       </div>
+     </div>
+   </div>

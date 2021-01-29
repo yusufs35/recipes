@@ -1,0 +1,44 @@
+<%-include("layouts/header") %>
+
+<section class="container-fluid search">
+     <div class="container">
+          <h2>Tarif Ara</h2>
+          <div class="row">
+               <div class="col-3">
+                    <label for="category" class="form-label">Kategoriler</label>
+                    <select class="form-control" id="category">
+                         <option value=""></option>
+                    </select>
+               </div>
+               <div class="col-sm-7">
+                    <label for="recipe" class="form-label">Tarif</label>
+                    <input type="text" class="form-control" id="recipe" placeholder="Tarif ile ilgili birşeyler yazın">
+               </div>
+               <div class="col-sm-2">
+                    <label for="recipe" class="form-label">Ara</label><br>
+                    <button class="btn btn-warning"><i class="fas fa-search"></i></button>
+               </div>
+
+          </div>
+     </div>
+</section>
+
+<section class="container search-results">
+     <div class="line row ">
+          <div class="d-flex align-items-center ">
+               <h3 class="text-muted text-nowrap">Arama Sonuçları</h3>
+               <div class="cizgi text-muted d-flex justify-content-center">
+               </div>
+          </div>
+
+          <div class="row">
+               <div class="col-md-4 col-sm-6 col-12 recipes">
+
+               </div>
+          </div>
+     </div>
+
+
+</section>
+
+<%-include("layouts/footer") %>

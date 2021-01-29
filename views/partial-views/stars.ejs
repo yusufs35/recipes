@@ -1,0 +1,13 @@
+<%
+var totalScore = 5;
+var score = 0;
+
+if(rating){
+     score = rating;
+}
+for (var j=0 ;j<score; j++) {%>
+     <i class="fas fa-star text-warning"></i>
+<% }
+for (var j=0 ;j < (totalScore - score) ; j++) {%>
+<i class="fas fa-star text-secondary"></i>
+<% } %>
