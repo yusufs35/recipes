@@ -3,7 +3,7 @@
      <div class="card-body">
        <h4 class="card-text text-muted"><%= recipe.title%></h4>
        <hr>
-       <%-include("partial-views/stars",{rating:recipe.rating })%>
+       <%-include("stars",{rating:recipe.rating })%>
        
 
        <div class="d-flex justify-content-end">
