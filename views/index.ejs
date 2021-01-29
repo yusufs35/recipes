@@ -1,4 +1,4 @@
-<%-include("header") %>
+<%-include("layouts/header") %>
 
 
 <!-- 2 -->
@@ -43,40 +43,11 @@
   <div class="row">
     <div class="col-md-9  dortuncu-bolum">
       <div class="row">
-    <%for(var i =0 ; i<recipes.length; i++){%>
-
-        <div class="col-md-4 col-sm-6 col-12 recipes">
-          <div class="card">
-            <a href="/tarifler/<%= recipes[i].recipe_id %>"><img src="/img/recipe/<%= recipes[i].image %>" class="card-img-top img-fluid " alt="<%= recipes[i].title %> Nasıl Yapılır ?" ></a>
-            <div class="card-body">
-              <h4 class="card-text text-muted"><%= recipes[i].title%></h4>
-              <hr>
-              <%
-              var totalScore = 5;
-              var score = 0;
-              if(recipes[i].rating){
-                  score = recipes[i].rating;
-              }
-                for (var j=0 ;j<score; j++) {%>
-                <i class="fas fa-star text-warning"></i>
-                <% }
-                for (var j=0 ;j < (totalScore - score) ; j++) {%>
-                  <i class="fas fa-star text-secondary"></i>
-                <% }
-
-
-
-
-              %>
-
-              <div class="d-flex justify-content-end">
-                <i class="far fa-clock pt-1 text-muted"></i> &nbsp;
-                <h5 class="text-muted font-weight-bold"><%= recipes[i].prep_time%> dk </h5>
-              </div>
-            </div>
+          <% recipes.forEach( (recipe) => { %>
+          <div class="col-md-4 col-sm-6 col-12 recipes">
+               <%-include("partial-views/recipe", {recipe: recipe})%>
           </div>
-        </div>
-        <% } %>
+          <% }); %>
 
       </div>
 
@@ -89,11 +60,11 @@
     <!-- 3 -->
 
     <div class="col-md-3 sidebar">
-      <%-include("sidebar") %>
+      <%-include("layouts/sidebar") %>
 
     </div>
     <!-- 3 -->
   </div>
 </section>
 
-<%-include("footer") %>
+<%-include("layouts/footer") %>

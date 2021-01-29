@@ -1,4 +1,4 @@
-<%-include("header") %>
+<%-include("layouts/header") %>
 
 <!-- 6.1 -->
 <section class="altinci-bolum banner ">
@@ -22,22 +22,10 @@
                   <div class="card-body">
                   <h5 class="card-title fs-1"><%= recipe[0].title %> </h5>
 
-                  <p class="card-text text-muted"><small class="text-muted">
-                    <%
-                    var totalScore = 5;
-                    var score = 0;
-                    if(recipe[0].rating){
-                        score = recipe[0].rating;
-                    }
-                      for (var j=0 ;j<score; j++) {%>
-                      <i class="fas fa-star text-warning"></i>
-                      <% }
-                      for (var j=0 ;j < (totalScore - score) ; j++) {%>
-                        <i class="fas fa-star text-secondary"></i>
-                      <% }
-
-
-                    %>(<%= comments.length %> yorum)</small></p>
+                  <p class="card-text text-muted">
+                       <small class="text-muted">
+                            <%-include("partial-views/stars",{rating: recipe[0].rating })%>
+                    (<%= comments.length %> yorum)</small></p>
                   </div>
                   <img src="/img/slider/slider3.jpg" class="card-img-bottom" alt="...">
                   <small class="bg-muted mt-3 shadow-sm">
@@ -66,13 +54,13 @@
                   <div class="row">
                        <div class="container px-4">
                             <div class="row gx-5">
-                                 <div class="col">
+                                 <div class="col-md-4">
                                       <div class="p-3 border bg-light">
                                            <h5>Malzemeler</h5>
                                       <%     for(i=0 ; i<ingredients.length ; i++ )  {  %>
                                       <div class="form-check">
-                                           <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                           <label class="form-check-label" for="flexCheckDefault">
+                                           <input class="form-check-input" type="checkbox" value="" id="flexCheck<%=i%>">
+                                           <label class="form-check-label" for="flexCheck<%=i%>">
                                                 <%=  ingredients[i].ingredient       %>
                                            </label>
                                       </div>
@@ -80,14 +68,14 @@
 
                                       </div>
                                  </div>
-                                 <div class="col">
+                                 <div class="col-md-8">
                                       <div class="p-3 border list-group-item list-group-item-action">
 
                                            <div class="d-flex w-100 justify-content-between">
                                                 <h5 class="mb-1"> Hazirlanisi</h5>
                                            </div>
                                            <%  for(i=0; i<directions.length ; i++){ %>
-                                             <p class="mb-1"> <%= directions[i].direction  %></p>
+                                             <ul><li><%= directions[i].direction  %></li></ul>
                                           <% } %>
 
                                       </div>
@@ -258,7 +246,7 @@
 
         <div class="col-md-3  sidebar" style="margin-top: 6rem;">
              <!-- BURAYA SIDEBAR GELECEK -->
-                <%-include("sidebar") %>
+                <%-include("layouts/sidebar") %>
            </div>
   </div>
 </section>
@@ -271,4 +259,4 @@
 
 
 
-<%-include("footer") %>
+<%-include("layouts/footer") %>
