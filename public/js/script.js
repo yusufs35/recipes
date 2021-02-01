@@ -40,7 +40,22 @@
           }
      }
 
+  
+     var addReview = document.getElementById('addReview');
+     if(addReview){
+          addReview.addEventListener('submit', function(e){
+               e.preventDefault();
 
+               addReview.classList.add('was-validated');
+
+               if(addReview.checkValidity()){
+                    addReview.submit();
+               }
+
+
+
+          });
+     }
      
 
 
