@@ -57,6 +57,17 @@
           });
      }
      
+     var btnSearchRecipe = document.getElementById('btnSearchRecipe');
+     if(btnSearchRecipe){
+
+          btnSearchRecipe.addEventListener('click', function(e){
+               var txtSearchRecipe = document.getElementById('txtSearchRecipe');
+
+               location.href = '/search/' + txtSearchRecipe.value;
+          });
+
+          
+     }
 
 
 

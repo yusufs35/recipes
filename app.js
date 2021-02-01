@@ -23,7 +23,7 @@ var connection = mysql.createConnection({
 connection.connect(function (err) {
     if (err) throw err;
     console.log("MYSQL'e bağlandı..");
-}); -
+}); 
 
 app.get("/", function (req, res) {
     var sql = "SELECT * FROM banners WHERE visible=1 ORDER BY seq;" +
@@ -104,19 +104,41 @@ app.post('/add-comment', function(req, res){
       });
 });
 
-
-app.get("/search/:cat/:text", function(req, res){
-     var sql = "BURAYA SQL GELCEK";
+app.get("/search/:text", function(req, res){
+     var sql = "SELECT * FROM recipes WHERE title LIKE '%" + req.params.text + "%';"+
+     "SELECT * FROM categories ORDER BY title;";
 
     connection.query(sql, function (err, results, fields) {
 
         if (err) throw err;
         res.render("search", {
-            searchResults: results
+            searchResults: results[0],
+            categories: results[1]
         })
 
     });
 
+});
+
+app.get("/login", function(req, res){
+     res.render("login");
+});
+
+
+app.post("/login", function(req, res){
+     connection.query("SELECT * FROM users WHERE email=? AND password=?", [req.body.email, req.body.password], 
+          function (err, results, fields) {
+               if (err) throw err;
+               
+               if(results.length>0){
+                    res.redirect("/");
+               }
+               else{
+                    res.render("login", {error:true});
+               }
+     
+          }
+     );
 });
 
 app.listen("9000");

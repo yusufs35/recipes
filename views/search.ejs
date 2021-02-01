@@ -32,9 +32,18 @@
           </div>
 
           <div class="row">
-               <div class="col-md-4 col-sm-6 col-12 recipes">
-
-               </div>
+               <% 
+               if(searchResults.length > 0){
+                    searchResults.forEach( (tarif)=> { %>
+                    <div class="col-md-4 col-sm-6 col-12 mt-3 recipes">
+                         <%-include ('partial-views/recipe', {recipe: tarif}) %>
+                    </div>
+                    <% });
+                    
+               }
+               else {%>
+                    <div class="alert alert-danger">Sonuç bulunamadı</div>
+               <%}%>
           </div>
      </div>
 
