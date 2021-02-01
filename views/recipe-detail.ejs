@@ -22,10 +22,13 @@
                   <div class="card-body">
                   <h5 class="card-title fs-1"><%= recipe[0].title %> </h5>
 
-                  <p class="card-text text-muted">
+                    <p class="card-text text-muted">
                        <small class="text-muted">
-                            <%-include("partial-views/stars",{rating: recipe[0].rating })%>
-                    (<%= comments.length %> yorum)</small></p>
+                            <%-include("partial-views/stars",{rating: rating[0].rating })%>
+                         (<%= comments.length %> yorum)
+                         </small>
+                         <small class="float-end"><i class="fas fa-eye"></i> <%= recipe[0].read_score %> kez okundu</small>
+                    </p>
                   </div>
                   <img src="/img/slider/slider3.jpg" class="card-img-bottom" alt="...">
                   <small class="bg-muted mt-3 shadow-sm">
@@ -156,8 +159,9 @@
                   </div>
 
                   <!-- Add Comment Form -->
-                  <form id="add-review" class="needs-validaiton" novalidate>
+                  <form id="addReview" class="needs-validaiton" action="/add-comment" method="post" novalidate>
                        <input type="hidden" id="hdnRate" name="rate" value="">
+                       <input type="hidden" id="hdnRecipe" name="recipe" value="<%=recipe[0].recipe_id%>">
                        <fieldset>
                             <div class="mb-3">
                                  <label for="name" class="form-label">Ad Soyad*</label>
