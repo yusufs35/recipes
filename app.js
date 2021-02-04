@@ -16,7 +16,7 @@ var connection = mysql.createConnection({
     multipleStatements: true,
     host: 'localhost',
     user: 'root',
-    password: 'Ax17*.c*',
+    password: '12344321',
     database: 'recipes'
 });
 
@@ -59,7 +59,7 @@ app.get("/tarifler/:tarif", function (req, res) {
         if (err) throw err;
 
           if(!req.cookies.tarif){
-               
+
                res.cookie('tarif', 'abc', {
                     expires: new Date(Date.now() + 1000 * 60 * 60 * 24)
                })
@@ -69,13 +69,13 @@ app.get("/tarifler/:tarif", function (req, res) {
                connection.query(sql, function (err, results, fields) {
                     if(err) throw err;
 
-                    
+
 
                });
          }
 
 
-         
+
          console.log(results[4]);
          res.render("recipe-detail", {
               recipe: results[0],
@@ -100,7 +100,7 @@ app.post('/add-comment', function(req, res){
 
           if (err) throw err;
           res.redirect('/tarifler/' + req.body.recipe);
-  
+
       });
 });
 
