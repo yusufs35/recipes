@@ -43,6 +43,7 @@ app.get("/", function (req, res) {
     });
 
 });
+
 app.get("/tarifler/:tarif", function (req, res) {
   var tarif = req.params.tarif;
     var sql = "SELECT * FROM recipes WHERE recipe_id="+tarif+";"+
@@ -72,7 +73,7 @@ app.get("/tarifler/:tarif", function (req, res) {
                     
 
                });
-         }
+          }
 
 
          
@@ -104,9 +105,25 @@ app.post('/add-comment', function(req, res){
       });
 });
 
-app.get("/search/:text", function(req, res){
-     var sql = "SELECT * FROM recipes WHERE title LIKE '%" + req.params.text + "%';"+
-     "SELECT * FROM categories ORDER BY title;";
+app.get("/search/:cat/:text", function(req, res){
+     // search/4/0     SELECT * FROM recipes WHERE category = 4 AND  1=1
+     // search/0/al    SELECT * FROM recipes WHERE title LIKE '%al%' AND 1=1
+     // search/5/al    SELECT * FROM recipes WHERE categroy=5 AND title LIKE '%al%' AND 1=1
+
+     var sql = "SELECT * FROM recipes WHERE ";
+
+     if(req.params.cat!="0"){
+          sql += "category = " + req.params.cat + " AND ";
+     }
+
+     if(req.params.text!="0"){
+          sql +=  "title LIKE '%" + req.params.text + "%' AND";
+     }
+
+     sql += " 1=1;";
+     sql += "SELECT * FROM categories ORDER BY title;";
+    
+
 
     connection.query(sql, function (err, results, fields) {
 
@@ -140,5 +157,15 @@ app.post("/login", function(req, res){
           }
      );
 });
+
+
+app.get("/admin/category/:id?", function(req, res){
+     res.render("admin-category");
+});
+
+app.get("/admin", function(req, res){
+     res.render("admin-index");
+});
+
 
 app.listen("9000");
