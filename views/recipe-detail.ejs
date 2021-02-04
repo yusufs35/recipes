@@ -24,7 +24,7 @@
 
                     <p class="card-text text-muted">
                        <small class="text-muted">
-                            <%-include("partial-views/stars",{rating: rating[0].rating })%>
+                            <%-include("partial-views/stars",{ rating: rating.length > 0 ? rating[0].rating : 0 })%>
                          (<%= comments.length %> yorum)
                          </small>
                          <small class="float-end"><i class="fas fa-eye"></i> <%= recipe[0].read_score %> kez okundu</small>
