@@ -70,15 +70,11 @@ app.get("/tarifler/:tarif", function (req, res) {
                connection.query(sql, function (err, results, fields) {
                     if(err) throw err;
 
-                    
-
                });
           }
 
-
-         
-         console.log(results[4]);
-         res.render("recipe-detail", {
+          console.log(results[4]);
+          res.render("recipe-detail", {
               recipe: results[0],
               ingredients:results[1],
               directions:results[2],
@@ -109,15 +105,17 @@ app.get("/search/:cat/:text", function(req, res){
      // search/4/0     SELECT * FROM recipes WHERE category = 4 AND  1=1
      // search/0/al    SELECT * FROM recipes WHERE title LIKE '%al%' AND 1=1
      // search/5/al    SELECT * FROM recipes WHERE categroy=5 AND title LIKE '%al%' AND 1=1
-
+     var params = [];
      var sql = "SELECT * FROM recipes WHERE ";
 
      if(req.params.cat!="0"){
-          sql += "category = " + req.params.cat + " AND ";
+          sql += "category = ? AND ";
+          params.push(req.params.cat);
      }
 
      if(req.params.text!="0"){
-          sql +=  "title LIKE '%" + req.params.text + "%' AND";
+          sql +=  "title LIKE ? AND";
+          params.push("%" + req.params.text + "%");
      }
 
      sql += " 1=1;";
@@ -125,12 +123,14 @@ app.get("/search/:cat/:text", function(req, res){
     
 
 
-    connection.query(sql, function (err, results, fields) {
+    connection.query(sql, params, function (err, results, fields) {
 
         if (err) throw err;
         res.render("search", {
             searchResults: results[0],
-            categories: results[1]
+            categories: results[1],
+            activeCategory: req.params.cat,
+            searchText: req.params.text
         })
 
     });
@@ -142,7 +142,9 @@ app.get("/login", function(req, res){
 });
 
 
+
 app.post("/login", function(req, res){
+     
      connection.query("SELECT * FROM users WHERE email=? AND password=?", [req.body.email, req.body.password], 
           function (err, results, fields) {
                if (err) throw err;
