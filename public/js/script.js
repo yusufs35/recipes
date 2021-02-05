@@ -72,5 +72,18 @@
      }
 
 
+     var btnSearch = document.getElementById('btnSearch');
+     if(btnSearch){
+          btnSearch.addEventListener('click', function(e){
+               var txtSearchRecipe = document.getElementById('txtSearchRecipe');
+               var slcCategory  = document.getElementById('slcCategory');
+
+               location.href = '/search/' + slcCategory.value + '/' + txtSearchRecipe.value;
+          });
+     }
+
+
+
+
 
 })();
