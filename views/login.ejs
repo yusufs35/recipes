@@ -15,15 +15,10 @@
          <input type="email" id="email" name="email" class="form-control" placeholder="Eposta adresiniz" autocomplete="off" required autofocus>
          <label for="inputPassword" class="visually-hidden">Şifre</label>
          <input type="text" id="password" name="password" class="form-control" placeholder="Password" required>
-         <div class="checkbox mb-3">
-           <label>
-             <input type="checkbox" value="remember-me"> Beni hatırla
-           </label>
-         </div>
          <button class="w-100 btn btn-lg btn-primary" type="submit">Giriş</button>
 
-         <%if(locals.error){%>
-               <div class="alert alert-danger mt-3">Bilgilerinizi kontrol ediniz</div>
+         <%if(locals.msg){%>
+               <div class="alert alert-danger mt-3"> <%=locals.msg%></div>
          <%}%>
 
          <p class="mt-5 mb-3 text-muted">&copy; 2017-2021</p>
