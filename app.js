@@ -1,7 +1,15 @@
+//npm i passport passport-local express-session bcrypt
+
 const mysql = require("mysql");
 const bodyParser = require("body-parser");
 const express = require("express");
 const cookieParser = require('cookie-parser');
+
+const session = require('express-session');
+const passport = require('passport');
+const passportLocal = require('passport-local');
+const bcrypt = require('bcrypt');
+
 
 const app = express();
 app.use(bodyParser.urlencoded({
@@ -11,6 +19,8 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.json());
 app.use(cookieParser());
+
+var LocalStrategy = passportLocal.Strategy;
 
 var connection = mysql.createConnection({
     multipleStatements: true,
@@ -24,6 +34,45 @@ connection.connect(function (err) {
     if (err) throw err;
     console.log("MYSQL'e bağlandı..");
 }); 
+
+passport.use('local-login', 
+     new LocalStrategy({
+          usernameField : 'email',
+          passwordField: 'password',
+          passReqToCallback: true
+     },
+     function(req, email, password, done){
+          connection.query("SELECT * FROM users WHERE email=?", [email], function(err, rows){
+               if(err) return done(null, {msg: err});
+               if(rows.length<=0) return done(null, {msg: "kullanıcı bulunamadı"});
+               if(!bcrypt.compareSync(password, rows[0].password )) return done(null, {msg: "şifre yanlış"});
+               if(rows[0].type != "admin") return done(null, {msg:"Admin değilsin"});
+
+               return done(rows[0], null);
+
+          });
+     }));
+
+
+passport.serializeUser(function(user, done){
+     done(null, user.user_id);
+});
+
+passport.deserializeUser(function(id, done){
+     connection.query("SELECT * FROM users WHERE user_id = ?", [id], function(err, rows){
+          done(err, rows[0]);
+     });
+});
+
+app.use(session({
+     secret: 'sjkhfsjkhfdjkshdjfjsklşwkerlşw',
+     resave: true,
+     saveUninitialized: true
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 app.get("/", function (req, res) {
     var sql = "SELECT * FROM banners WHERE visible=1 ORDER BY seq;" +
@@ -144,7 +193,6 @@ app.get("/search/:cat/:text", function(req, res){
             activeCategory: req.params.cat,
             searchText: req.params.text
         })
-
     });
 
 });
@@ -153,33 +201,42 @@ app.get("/login", function(req, res){
      res.render("login");
 });
 
-
-
 app.post("/login", function(req, res){
-     
-     connection.query("SELECT * FROM users WHERE email=? AND password=?", [req.body.email, req.body.password], 
-          function (err, results, fields) {
-               if (err) throw err;
-               
-               if(results.length>0){
-                    res.redirect("/");
-               }
-               else{
-                    res.render("login", {error:true});
-               }
-     
+     passport.authenticate('local-login', function(user, msg){
+          if(msg){
+               res.render('login', msg);
           }
-     );
+          else{
+               req.logIn(user, function(err){
+                    if(err) throw err;
+                    return res.redirect('/admin');
+               });
+          }
+     })(req,res)
+});
+
+app.get('/admin/logout', isLoggedIn, function(req, res){
+     req.logout();
+     res.redirect('/');
 });
 
 
-app.get("/admin/category/:id?", function(req, res){
+app.get("/admin/category/:id?", isLoggedIn, function(req, res){
      res.render("admin-category");
 });
 
-app.get("/admin", function(req, res){
+app.get("/admin", isLoggedIn,  function(req, res){
      res.render("admin-index");
 });
 
 
 app.listen("9000");
+
+
+
+function isLoggedIn(req, res, next){
+     if(req.isAuthenticated()){
+          return next();
+     }
+     res.redirect('/login');
+}
