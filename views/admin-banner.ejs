@@ -1,0 +1,104 @@
+<%-include ('layouts/admin-header.ejs') %>
+     <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+               <li class="breadcrumb-item"><a href="/admin">Ana Sayfa</a></li>
+               <li class="breadcrumb-item active" aria-current="page">Banner</li>
+
+          </ol>
+     </nav>
+
+
+     <div class="container-fluid">
+          <h3>Banner</h3>
+          <div class="row">
+               <div class="col-md-4">
+                    <table class="table">
+                         <tbody>
+                              <% banners.forEach( (banner, index)=> {%>
+                                   <tr>
+                                        <th scope="row">
+                                             <%=index+1%>
+                                        </th>
+                                        <td><img src="/media/banner/<%=banner.image%>" class="img-fluid"></td>
+                                        <td class="text-end">
+                                             <a href="/admin/banner/<%=index%>" class="btn btn-sm"><i
+                                                       class="fas fa-eye"></i></a>
+                                        </td>
+                                   </tr>
+                                   <%});%>
+                         </tbody>
+                    </table>
+               </div>
+               <div class="col-md-8">
+                    <div class="card bg-warning">
+                         <form action="/admin/banner/add" method="post">
+                              <div class="card-body">
+                                   <div class="row">
+                                        <div class="col-sm-6">
+                                             <input type="text" class="form-control" id="title" name="title"
+                                                  placeholder="Başlık" required>
+                                        </div>
+                                        <div class="col-sm-4">
+                                             <div class="custom-file">
+                                                  <input type="file" class="custom-file-input" id="image" name="image">
+                                             </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                             <button type="submit" class="btn btn-success w-100"><i
+                                                       class="fas fa-plus"></i> Ekle</button>
+                                        </div>
+                                   </div>
+
+                              </div>
+                         </form>
+                    </div>
+
+                    <% if(banners.length>0) { %>
+
+                         <div class="card mt-5">
+                              <form action="/admin/banner/update" method="post">
+                                   <input type="hidden" name="id" value="<%=banners[selectedIndex].banner_id%>">
+                                   <div class="card-header">
+                                        Güncelle
+                                   </div>
+                                   <div class="card-body">
+                                        <div class="mb-3">
+                                             <label for="name" class="form-label">Başlık</label>
+                                             <input type="text" class="form-control" id="title" name="title"
+                                                  value="<%=banners[selectedIndex].title%>" required>
+                                        </div>
+                                        <div class="mb-3">
+                                             <label for="seq" class="form-label">Sıra</label>
+                                             <input type="number" class="form-control" id="seq" name="seq"
+                                                  value="<%=banners[selectedIndex].seq%>" required>
+                                        </div>
+                                        <div class="mb-3">
+                                             <label for="seq" class="form-label">Fotoğraf</label>
+                                             <div><img src="/media/banner/<%=banners[selectedIndex].image%>"
+                                                       class="img-fluid"></div>
+                                             <div class="custom-file">
+                                                  <input type="file" class="custom-file-input" id="image" name="banner">
+                                             </div>
+                                        </div>
+                                   </div>
+                                   <div class="card-footer text-end">
+                                        <button type="submit" name="btnUpdate" class="btn btn-warning"><i
+                                                  class="fas fa-save"></i> Kaydet</button>
+                                        <a href="/admin/banner/delete/" class="btn btn-danger"><i
+                                                  class="fas fa-trash"></i>
+                                             Sil</a>
+                                   </div>
+                              </form>
+                         </div>
+                         <% } %>
+
+
+
+
+               </div>
+          </div>
+
+     </div>
+
+
+     <%-include ('layouts/admin-footer.ejs') %>
